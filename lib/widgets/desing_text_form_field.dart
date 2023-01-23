@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
 
 class DesingTextFormField extends StatelessWidget {
-  const DesingTextFormField({Key? key}) : super(key: key);
+  final IconData icon;
+  final String placeholder;
+  final TextEditingController textController;
+  final TextInputType keyboardType;
+  final bool obscureText;
+
+  const DesingTextFormField({
+    Key? key,
+    required this.icon,
+    required this.placeholder,
+    required this.textController,
+    this.keyboardType = TextInputType.text,
+    this.obscureText = false,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20),
       decoration: BoxDecoration(
           color: Colors.grey,
@@ -18,14 +31,15 @@ class DesingTextFormField extends StatelessWidget {
             ),
           ]),
       child: TextFormField(
+        controller: textController,
         autocorrect: false,
-        keyboardType: TextInputType.emailAddress,
-        obscureText: false,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.email_outlined),
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          prefixIcon: Icon(icon),
           focusedBorder: InputBorder.none,
           border: InputBorder.none,
-          hintText: 'Correo',
+          hintText: placeholder,
         ),
       ),
     );

@@ -13,36 +13,13 @@ class LoginPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          _Logo(),
+          Logo(),
           Form(),
-          _Labels(),
-          _TermCond(),
+          Labels(),
+          TermCond(),
         ],
       ),
     ));
-  }
-}
-
-class _Logo extends StatelessWidget {
-  const _Logo({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        margin: const EdgeInsets.only(top: 50),
-        width: 170,
-        child: Column(
-          children: [
-            const Image(image: AssetImage('assets/tag-logo.png')),
-            const SizedBox(height: 20),
-            Text('Messenger', style: GoogleFonts.roboto(fontSize: 30))
-          ],
-        ),
-      ),
-    );
   }
 }
 
@@ -54,68 +31,37 @@ class Form extends StatefulWidget {
 }
 
 class _FormState extends State<Form> {
+  final emailCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 40),
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
-        children: const [
-          DesingTextFormField(),
-          DesingTextFormField(),
-          DesingTextFormField(),
-
-          //TODO: Crear un boton
-          //ElevatedButton(onPressed: () {}, child: Icon(Icons.start_outlined))
-        ],
-      ),
-    );
-  }
-}
-
-class _Labels extends StatelessWidget {
-  const _Labels({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
         children: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "¿No tienes cuenta?",
-              style: GoogleFonts.roboto(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+          DesingTextFormField(
+            icon: Icons.mail_outline,
+            placeholder: 'Correo',
+            keyboardType: TextInputType.emailAddress,
+            textController: emailCtrl,
           ),
+          DesingTextFormField(
+            icon: Icons.lock_outline,
+            placeholder: 'Contraseña',
+            obscureText: true,
+            keyboardType: TextInputType.visiblePassword,
+            textController: passCtrl,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                print(emailCtrl.text);
+              },
+              child: Text(
+                'Ingresar',
+                style: GoogleFonts.roboto(),
+              ))
         ],
-      ),
-    );
-  }
-}
-
-class _TermCond extends StatelessWidget {
-  const _TermCond({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(
-        onPressed: () {},
-        child: Text(
-          "Terminos y condiciones de uso",
-          style: GoogleFonts.roboto(
-            fontSize: 15,
-            fontWeight: FontWeight.w100,
-          ),
-        ),
       ),
     );
   }
