@@ -1,23 +1,30 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:real_time_chat/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Logo(),
-          Form(),
-          Labels(),
-          TermCond(),
-        ],
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Container(
+          height: size.height * 0.9,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Logo(),
+              Form(),
+              Labels(),
+              TermCond(),
+            ],
+          ),
+        ),
       ),
     ));
   }
