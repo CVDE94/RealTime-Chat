@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers
+// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 
@@ -34,7 +34,7 @@ class RegisterPage extends StatelessWidget {
 }
 
 class _Form extends StatefulWidget {
-  const _Form({super.key});
+  const _Form();
 
   @override
   State<_Form> createState() => _FormState();
@@ -72,15 +72,7 @@ class _FormState extends State<_Form> {
           DesingButton(
             text: 'Registrar',
             fontSize: 15.0,
-            onPressed: () {
-              print(emailCtrl.text);
-              print(passCtrl.text);
-              print(userCtrl.text);
-
-              emailCtrl.text = '';
-              passCtrl.text = '';
-              userCtrl.text = '';
-            },
+            onPressed: () {},
           ),
         ],
       ),

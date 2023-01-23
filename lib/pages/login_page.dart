@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class _Form extends StatefulWidget {
-  const _Form({super.key});
+  const _Form();
 
   @override
   State<_Form> createState() => _FormState();
@@ -66,10 +66,7 @@ class _FormState extends State<_Form> {
           DesingButton(
             text: 'Ingresar',
             fontSize: 15.0,
-            onPressed: () {
-              print(emailCtrl.text);
-              print(passCtrl.text);
-            },
+            onPressed: () {},
           ),
         ],
       ),
