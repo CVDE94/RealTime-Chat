@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:real_time_chat/widgets/widgets.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,7 +32,7 @@ class _Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 50),
+        margin: const EdgeInsets.only(top: 50),
         width: 170,
         child: Column(
           children: [
@@ -54,11 +57,16 @@ class _FormState extends State<Form> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
-        children: [
-          TextFormField(),
-          TextFormField(),
-          ElevatedButton(onPressed: () {}, child: Icon(Icons.start_outlined))
+        children: const [
+          DesingTextFormField(),
+          DesingTextFormField(),
+          DesingTextFormField(),
+
+          //TODO: Crear un boton
+          //ElevatedButton(onPressed: () {}, child: Icon(Icons.start_outlined))
         ],
       ),
     );
