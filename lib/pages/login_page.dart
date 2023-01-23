@@ -53,14 +53,14 @@ class _FormState extends State<Form> {
             keyboardType: TextInputType.visiblePassword,
             textController: passCtrl,
           ),
-          ElevatedButton(
-              onPressed: () {
-                print(emailCtrl.text);
-              },
-              child: Text(
-                'Ingresar',
-                style: GoogleFonts.roboto(),
-              ))
+          DesingButton(
+            text: 'Ingresar',
+            fontSize: 15.0,
+            onPressed: () {
+              print(emailCtrl.text);
+              print(passCtrl.text);
+            },
+          ),
         ],
       ),
     );
