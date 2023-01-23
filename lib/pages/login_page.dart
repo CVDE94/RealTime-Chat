@@ -19,8 +19,11 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               Logo(),
-              Form(),
-              Labels(),
+              _Form(),
+              Labels(
+                rute: 'register',
+                label: '"¿No tienes cuenta?',
+              ),
               TermCond(),
             ],
           ),
@@ -30,14 +33,14 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class Form extends StatefulWidget {
-  const Form({super.key});
+class _Form extends StatefulWidget {
+  const _Form({super.key});
 
   @override
-  State<Form> createState() => _FormState();
+  State<_Form> createState() => _FormState();
 }
 
-class _FormState extends State<Form> {
+class _FormState extends State<_Form> {
   final emailCtrl = TextEditingController();
   final passCtrl = TextEditingController();
   @override
