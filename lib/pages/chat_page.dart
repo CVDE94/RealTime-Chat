@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:real_time_chat/widgets/chat_message.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -16,6 +17,13 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final _textController = TextEditingController();
   final _focusNode = FocusNode();
+
+  final List<ChatMessage> _messages = [
+    const ChatMessage(texto: 'Holis Motroquis', uuid: '254'),
+    const ChatMessage(texto: 'Holis Motroquis', uuid: '123'),
+    const ChatMessage(texto: 'Holis Motroquis', uuid: '123'),
+    const ChatMessage(texto: 'Holis Motroquis', uuid: '1253'),
+  ];
 
   bool _estaEscribiendo = false;
 
@@ -49,7 +57,8 @@ class _ChatPageState extends State<ChatPage> {
             Flexible(
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemBuilder: (_, i) => Text('$i'),
+                itemCount: _messages.length,
+                itemBuilder: (_, i) => _messages[i],
                 reverse: true,
               ),
             ),
@@ -93,12 +102,12 @@ class _ChatPageState extends State<ChatPage> {
             //Boton de enviar
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 4.0),
-              child: !Platform.isIOS
+              child: Platform.isIOS
                   ? CupertinoButton(
-                      child: const Text('Enviar'),
                       onPressed: _estaEscribiendo
                           ? () => _handleSubmit(_textController.text.trim())
                           : null,
+                      child: const Text('Enviar'),
                     )
                   : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -124,9 +133,10 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   _handleSubmit(String texto) {
-    print(texto);
     _focusNode.requestFocus();
     _textController.clear();
+    final newMessage = ChatMessage(texto: texto, uuid: '123');
+    _messages.insert(0, newMessage);
     setState(() {
       _estaEscribiendo = false;
     });
