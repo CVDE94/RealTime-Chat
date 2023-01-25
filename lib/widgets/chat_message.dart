@@ -4,16 +4,25 @@ import 'package:google_fonts/google_fonts.dart';
 class ChatMessage extends StatelessWidget {
   final String texto;
   final String uuid;
+  final AnimationController animationController;
 
   const ChatMessage({
     Key? key,
     required this.texto,
     required this.uuid,
+    required this.animationController,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: uuid == '123' ? _myMessage() : _notMyMessage(),
+    return FadeTransition(
+      opacity: animationController,
+      child: SizeTransition(
+        sizeFactor:
+            CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+        child: Container(
+          child: uuid == '123' ? _myMessage() : _notMyMessage(),
+        ),
+      ),
     );
   }
 
